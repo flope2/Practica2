@@ -161,15 +161,18 @@ rm(list=ls())
 library(ggplot2)
 load('data/weatherAUS.RData')
 grafico1 <- ggplot(data= ds, mapping= aes(x = MinTemp, y=MaxTemp))
+grafico1
 
 grafico1<-ggplot(data= ds, mapping= aes(x = MinTemp, y=MaxTemp)) + geom_point()
+grafico1
 
 grafico2<-ggplot(data = ds) +
   geom_point(mapping = aes(x = MinTemp, y=MaxTemp, colour=RainTomorrow)) + geom_point()
+grafico2
 
 grafico3<-grafico2 + ggtitle('Relación entre temperaturas máxima y mínima y probabilidad de lluvia')
-
 grafico3
+
 ggsave('figs/Ejercicio1.pdf') #coge el ultimo grafico hecho
 ```
 
@@ -183,9 +186,16 @@ ggsave('figs/Ejercicio1.pdf') #coge el ultimo grafico hecho
 
 ```{r Solucion ejercicio 2}
 ej2_a<-ggplot(data=ds, mapping = aes(x=Temp9am, y=Pressure9am))+geom_point()
+ej2_a
+
 ej2_b<-ggplot(data=ds, mapping = aes(x=Temp9am, y=Pressure9am, shape=RainToday)) + geom_point()
-ej2_c<-ggplot(data=ds, mapping = aes(x=Temp9am, y=Pressure9am, colour=RainToday)) + geom_point()
-ej2_c+labs(title='Probabilidad de lluvia segun condiciones atmosfericas', x='Temperatura', y='Presión atmosferica')
+ej2_b
+
+ej2_c<-ggplot(data=ds, mapping = aes(x=Temp9am, y=Pressure9am, colour=RainToday)) + geom_point()ej2_a
+ej2_c
+
+ej2_d<-ej2_c+labs(title='Probabilidad de lluvia segun condiciones atmosfericas', x='Temperatura', y='Presión atmosferica')
+ej2_d
 ggsave('figs/Ejercicio2.pdf')
 ```
 
@@ -201,8 +211,23 @@ ggsave('figs/Ejercicio2.pdf')
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio3.pdf``.
 
 ```{r Solucion ejercicio 3}
+library(ggplot2)
+load('data/iris_tidy.Rdata')
+str(iris.tidy)
 
-ggsave('figs/Ejercicio3.pdf') # se almacena el último gráfico generado
+iris.grafico1<-ggplot(data=iris.tidy, aes(x=Species, y=Value))
+iris.grafico1<-ggplot(data=iris.tidy, aes(x=Species, y=Value))+geom_point()
+iris.grafico1
+
+iris.grafico2<-ggplot(data=iris.tidy, aes(x=Species, y=Value, colour=Part))+geom_point()
+iris.grafico2
+
+iris.grafico3<-ggplot(data=iris.tidy, aes(x=Species, y=Value, colour=Part))+geom_point()+ facet_grid(Measure~.)
+iris.grafico3
+
+iris.grafico4<-ggplot(data=iris.tidy, aes(x=Species, y=Value, colour=Part))+geom_jitter()+facet_grid(Measure~.)
+iris.grafico4
+#ggsave('figs/Ejercicio3.pdf') # se almacena el último gráfico generado
 ```
 
 ## Gráficos de línea con **ggplot2**
@@ -284,7 +309,21 @@ ggplot(data=Dosis.Medicina2, aes(x=Dosis, y=Efectividad, group=Complemento)) +
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio4.pdf``.
 
 ```{r Solucion ejercicio 4}
+rm(list=ls()) 
+library(ggplot2)
+load('data/Ejercicio4_Data.Rdata')
+str(DatosEjer4)
+ej4_a<-ggplot(data=DatosEjer4, aes(x=Fecha, y=Ventas, colour=Fabricante))+geom_point()
+ej4_a
 
+ej4_b<-ggplot(data=DatosEjer4, aes(x=Fecha, y=Ventas, colour=Fabricante))+geom_point()+geom_line()
+ej4_b
+
+ej4_c<-ggplot(data=DatosEjer4, aes(x=Fecha, y=Ventas, colour=Fabricante))+geom_point()+geom_line(aes(linetype=Fabricante))
+ej4_c
+
+ej4_d<-ej4_c + ggtitle('Ventas mensuales de diferentes compañías tecnológicas')
+ej4_d
 ```
 
 ## Barras de error con **ggplot2**
