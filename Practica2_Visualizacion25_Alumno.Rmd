@@ -227,7 +227,7 @@ iris.grafico3
 
 iris.grafico4<-ggplot(data=iris.tidy, aes(x=Species, y=Value, colour=Part))+geom_jitter()+facet_grid(Measure~.)
 iris.grafico4
-#ggsave('figs/Ejercicio3.pdf') # se almacena el último gráfico generado
+ggsave('figs/Ejercicio3.pdf') # se almacena el último gráfico generado
 ```
 
 ## Gráficos de línea con **ggplot2**
@@ -324,6 +324,7 @@ ej4_c
 
 ej4_d<-ej4_c + ggtitle('Ventas mensuales de diferentes compañías tecnológicas')
 ej4_d
+ggsave('figs/Ejercicio4.pdf')
 ```
 
 ## Barras de error con **ggplot2**
@@ -379,13 +380,16 @@ El fichero ``iceRiver.RData`` contiene información del caudal de dos ríos isla
   * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio5.pdf``.
 
 ```{r Solucion ejercicio 6 }
+library(latex2exp)
+rm(list=ls())
 load('data/iceRiver.RData')
 ?tseries::ice.river
-ej6_a<-ggplot(data=ice.river.df, aes(y=time)) +geom_point(aes(x=flow.vat), colour='red')+geom_point(aes(x=flow.jok), colour='blue')
+ej6_a<-ggplot(data=ice.river.df, aes(x=time)) +geom_line(aes(y=flow.vat), colour='red')+geom_line(aes(y=flow.jok), colour='blue')
 ej6_a
 
-ej6_b<-ej6_a + labs(title='Caudal de ríos islandeses durante 3 años')
+ej6_b<-ej6_a + labs(title='Caudal de los ríos Vatnsdalsa (azul) y Jokulsa (rojo) durante 3 años', x='Tiempo', y =TeX('$Caudal(m^3/s)$'))
 ej6_b
+ggsave('figs/Ejercicio6.pdf')
 ```
 
 
