@@ -379,8 +379,13 @@ El fichero ``iceRiver.RData`` contiene información del caudal de dos ríos isla
   * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio5.pdf``.
 
 ```{r Solucion ejercicio 6 }
+load('data/iceRiver.RData')
+?tseries::ice.river
+ej6_a<-ggplot(data=ice.river.df, aes(y=time)) +geom_point(aes(x=flow.vat), colour='red')+geom_point(aes(x=flow.jok), colour='blue')
+ej6_a
 
-
+ej6_b<-ej6_a + labs(title='Caudal de ríos islandeses durante 3 años')
+ej6_b
 ```
 
 
