@@ -160,6 +160,8 @@ p2
 rm(list=ls()) 
 load('data/weatherAUS.RData')
 grafico1 <- ggplot(ds, aes(x = 'MinTemp', y='MaxTemp'))
+grafico1<-ggplot(ds, aes(x = 'MinTemp', y='MaxTemp'))+geom_point()
+
 #ggsave('figs/Ejercicio1.pdf') #coge el ultimo grafico hecho
 ```
 
