@@ -390,6 +390,8 @@ ej6_a
 ej6_b<-ej6_a + labs(title='Caudal de los ríos Vatnsdalsa (azul) y Jokulsa (rojo) durante 3 años', x='Tiempo', y =TeX('$Caudal(m^3/s)$'))
 ej6_b
 ggsave('figs/Ejercicio6.pdf')
+
+#TENER EN CUENTA: En el gráfico NO SE IDENTIFICA QUE RIO ES CUAL. Esto solo se hace si en el dataframe tenemos todas las x en la misma columna (necesitariamos una columna del flujo, que incluiria ambos rios) y que luego otra columna identifique el rio que es (una nueva columna que establezca que rio es). De esta manera graficariamos x=flujo y colour=rio (como hicimos en ejercicios anteriores).
 ```
 
 
