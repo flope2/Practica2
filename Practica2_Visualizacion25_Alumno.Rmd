@@ -367,8 +367,19 @@ Añadir barras de error a un gráfico de línea.
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio5.pdf``.
 
 ```{r Solucion ejercicio 5}
+rm(list=ls())
+load('data/Experimento.Rdata')
+str(Experimento)
+ej5_a<-ggplot(data=Experimento, aes(x=Dosis, y=Altura, linetype=Complemento, shape=Complemento)) + geom_point() + geom_line()
+ej5_a
 
+ej5_b<- ej5_a + geom_errorbar(aes(ymin=Altura - Error_Altura, ymax=Altura+Error_Altura), width=0.1)
+ej5_b
 
+ej5_c<-ggplot(data=Experimento, aes(x=Dosis, y=Altura)) + geom_point(aes(colour=Complemento, shape=Complemento)) + geom_line(aes( colour=Complemento, linetype=Complemento)) + geom_errorbar(aes(ymin=Altura - Error_Altura, ymax=Altura+Error_Altura, colour=Complemento), width=0.1) + scale_color_brewer(palette = 'Reds')
+ej5_c
+
+#ggsave('figs/Ejercicio5.pdf')
 ```
 
 ### **Ejercicio 6 **
@@ -408,7 +419,20 @@ En esta sección vamos a utilizar **ggplot2** para representar distribuciones de
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio7.pdf``.
 
 ```{r Solucion ejercicio 7}
+rm(list=ls())
+library(ggplot2)
+load('data/weatherAUS_distributions.RData')
 
+ej7_a<-ggplot(data=ds, aes(x=Year, y=MinTemp)) + geom_boxplot()
+ej7_a
+
+ej7_b<-ggplot(data=ds, aes(x=Year, y=MaxTemp)) + geom_violin(aes(fill=Year)) + labs(title='Distribución de temperaturas máximas por año', x='Año', y='Temperatura (ºC)')
+ej7_b
+
+ej7_d<-ggplot(data=ds, aes(x=Year, y=MaxTemp)) + geom_violin(aes(fill=Year)) + labs(title='Distribución de temperaturas máximas por año', x='Año', y='Temperatura (ºC)') + theme(legend.position='none', axis.text.x=element_text(angle=45))
+ej7_d
+
+ggsave('figs/Ejercicio7.pdf')
 ```
 
 ## Histogramas con **ggplot2**
