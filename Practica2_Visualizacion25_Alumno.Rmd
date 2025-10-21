@@ -158,11 +158,19 @@ p2
 
 ```{r Solucion ejercicio 1}
 rm(list=ls()) 
+library(ggplot2)
 load('data/weatherAUS.RData')
-grafico1 <- ggplot(ds, aes(x = 'MinTemp', y='MaxTemp'))
-grafico1<-ggplot(ds, aes(x = 'MinTemp', y='MaxTemp'))+geom_point()
+grafico1 <- ggplot(data= ds, mapping= aes(x = MinTemp, y=MaxTemp))
 
-#ggsave('figs/Ejercicio1.pdf') #coge el ultimo grafico hecho
+grafico1<-ggplot(data= ds, mapping= aes(x = MinTemp, y=MaxTemp)) + geom_point()
+
+grafico2<-ggplot(data = ds) +
+  geom_point(mapping = aes(x = MinTemp, y=MaxTemp, colour=RainTomorrow)) + geom_point()
+
+grafico3<-grafico2 + ggtitle('Relación entre temperaturas máxima y mínima y probabilidad de lluvia')
+
+grafico3
+ggsave('figs/Ejercicio1.pdf') #coge el ultimo grafico hecho
 ```
 
 ### **Ejercicio 2**
@@ -174,7 +182,10 @@ grafico1<-ggplot(ds, aes(x = 'MinTemp', y='MaxTemp'))+geom_point()
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio2.pdf``.
 
 ```{r Solucion ejercicio 2}
-
+ej2_a<-ggplot(data=ds, mapping = aes(x=Temp9am, y=Pressure9am))+geom_point()
+ej2_b<-ggplot(data=ds, mapping = aes(x=Temp9am, y=Pressure9am, shape=RainToday)) + geom_point()
+ej2_c<-ggplot(data=ds, mapping = aes(x=Temp9am, y=Pressure9am, colour=RainToday)) + geom_point()
+ej2_c+labs(title='Probabilidad de lluvia segun condiciones atmosfericas', x='Temperatura', y='Presión atmosferica')
 ggsave('figs/Ejercicio2.pdf')
 ```
 
