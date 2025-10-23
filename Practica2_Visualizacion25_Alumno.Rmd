@@ -535,8 +535,28 @@ ggplot(data=dataset_hist1, aes(x=AGE)) +
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio8.pdf``.
 
 ```{r Solucion ejercicio 8}
-# 
+url <- "http://assets.datacamp.com/blog_assets/chol.txt"
+dc<-read.table(url, head=T)
+df<-data.frame(dc)
 
+ej8_a<-ggplot(data=df, aes(x=HEIGHT)) + geom_histogram()
+ej8_a
+
+ej8_b<- ej8_a + labs(title="Histograma de la variable Altura", x="Altura (cm)", y= "Frecuencia")
+ej8_b
+
+ej8_c<-ggplot(data=df, aes(x=HEIGHT)) + geom_histogram(breaks= seq(155, 195, by=2))
+ej8_c
+
+ej8_d<-ggplot(data=df, aes(x=HEIGHT)) + geom_histogram(breaks= seq(155, 195, by=2), col="red",fill="blue",alpha = .5) 
+ej8_d
+
+ej8_e<-ggplot(data=df, aes(x=HEIGHT)) + geom_histogram(aes(y= after_stat(density)), breaks= seq(155, 195, by=2), col="red",fill="blue",alpha = .5)  +
+  geom_density(col="green")
+ej8_e
+  
+ej8_f<- ej8_e+facet_grid(. ~ MORT)
+ej8_f
 ```
 
 ## Gráficos de barras con **ggplot2**
